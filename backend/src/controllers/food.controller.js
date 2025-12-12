@@ -43,3 +43,27 @@ export const createFoodController = async (req, res) => {
         });
     }
 };
+
+export const getAllFoodController = async (req, res) => {
+    try {
+        const getAllFood = await Food.find()
+        if (getAllFood.length <= 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No food reels found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Food fetched successfully",
+            getAllFood
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+};
