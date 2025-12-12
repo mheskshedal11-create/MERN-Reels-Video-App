@@ -1,5 +1,12 @@
-import express from 'express'
+import express from "express";
+import { createFoodController } from "../controllers/food.controller.js";
+import multer from "multer";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
-const foodRouter = express.Router()
+const router = express.Router();
 
-export default foodRouter
+const upload = multer();
+
+router.post("/", upload.single("video"), authMiddleware, createFoodController);
+
+export default router;

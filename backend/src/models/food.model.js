@@ -3,14 +3,16 @@ import mongoose from "mongoose";
 const foodSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     video: {
         type: String,
         required: true
     },
     description: {
-        type: string
+        type: String,
+        trim: true
     },
     foodPartner: {
         type: mongoose.Schema.Types.ObjectId,
