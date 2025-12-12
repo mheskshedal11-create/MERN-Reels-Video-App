@@ -1,24 +1,23 @@
 import mongoose from "mongoose";
 
 const foodpartnerSchema = new mongoose.Schema({
-    name: {
-        fullName: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true,
-            uniqure: true
-        },
-        password: {
-            type: String,
-        }
-
+    fullName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /.+\@.+\..+/
+    },
+    password: {
+        type: String,
+        required: true,
+        select: false
     }
+}, { timestamps: true });
 
-}, { timestamps: true })
+const FoodPartner = mongoose.model('FoodPartner', foodpartnerSchema);
 
-const FoodPartner = mongoose.model('FoodPartner', foodpartnerSchema)
-
-export default FoodPartner
+export default FoodPartner;
